@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  lelis-web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile.dev
+    command: bash -c "gunicorn -w 2 --bind 0.0.0.0:5000 --timeout 60 -k eventlet --log-level=debug --access-logfile=- --error-logfile=- --preload app:app"
+    ports:
+      - 8888:5000
+    environment:
+      - FLASK_DEBUG=1
+      - APP_FOLDER=/home/app/web
+      - FLASK_SECRET_KEY=very-powerful-sEcr3t-KeY
+      - FLASK_ENV=development
+      - DB_USER=teste_claudiolelis
+      - DB_PASSWORD=P4SSw0rd-test-000000
+      - DB_HOST=postgres-db
+      - DB_PORT=5432
+      - DB_NAME=teste_claudiolelis_db
+    container_name: lelis-web
+    networks:
+      - postgres-network
+    volumes:
+      - ./web/webapp/templates:/home/app/web/webapp/templates
+    depends_on:
+      - postgres-db
+
+  postgres-db:
+    image: postgres:16.1-alpine3.19
+    environment:
+      POSTGRES_USER: teste_claudiolelis
+      POSTGRES_PASSWORD: P4SSw0rd-test-000000
+      POSTGRES_DB: teste_claudiolelis_db
+    ports:
+      - 5432:5432
+    container_name: postgres-db
+    hostname: postgres-db
+    networks:
+      - postgres-network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+networks:
+  postgres-network:
+    name: postgres-network
+
+volumes:
+  postgres_data:

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+Example: Proverbs list
+{% endblock %}
+
+{% block content %}
+<div class="container p-4" style="margin-top: 100px;">
+    <h1>List of Bible Proverbs</h1>
+    <ul class="list-group">
+        {% for proverb in proverbs %}
+        <li class="list-group-item">
+            <strong>Proverbs {{ proverb.chapter }}:{{ proverb.verse }}</strong> - {{ proverb.text }}
+        </li>
+        {% endfor %}
+    </ul>
+    
+    <!-- Pagination controls -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center mt-4">
+            {% if proverbs %}
+                {% if page > 1 %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('bp_list_reports.show_proverbs', page=page-1, limit=limit) }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                <li class="page-item disabled">
+                    <span class="page-link">Page {{ page }}</span>
+                </li>
+                {% if end_index < len(proverbs) %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('bp_list_reports.show_proverbs', page=page+1, limit=limit) }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endblock %}

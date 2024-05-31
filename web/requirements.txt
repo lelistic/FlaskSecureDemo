@@ -1,0 +1,15 @@
+Flask 
+psycopg2-binary
+flask-sqlalchemy
+flask-security-too
+bcrypt
+sqlalchemy-utils
+gunicorn
+flask_mailman
+passlib
+eventlet
+python-dateutil
+beautifulsoup4
+bleach
+python-dotenv
+#Flask-Migrate
