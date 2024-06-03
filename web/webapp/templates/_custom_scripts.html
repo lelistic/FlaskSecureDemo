@@ -1,0 +1,44 @@
+
+
+<script>
+    // Show or hide the "back to top" button
+    window.addEventListener('scroll', function() {
+        const backToTopButton = document.getElementById('backToTop');
+        if (window.scrollY > 300) {
+            backToTopButton.classList.remove('d-none');
+        } else {
+            backToTopButton.classList.add('d-none');
+        }
+    });
+
+    // Scroll to top when the button is clicked
+    document.getElementById('backToTop').addEventListener('click', function(event) {
+        event.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+</script>
+
+
+<script>
+    // Hide the spinner and show the content once the page has fully loaded
+    window.addEventListener('load', function() {
+        // Simulate a delay (e.g., 2 seconds)
+        setTimeout(function() {
+                const spinnerWrapper = document.getElementById('spinnerWrapper');
+                const content = document.getElementById('content');
+
+                if (spinnerWrapper && content) {
+                    // Hide the spinner
+                    spinnerWrapper.classList.add('d-none');
+
+                    // Show the content
+                    content.classList.remove('d-none');
+                } else {
+                    console.error('Element(s) not found in the DOM');
+                }
+            }, 2000); // 2000 milliseconds = 2 seconds
+    });
+</script>
