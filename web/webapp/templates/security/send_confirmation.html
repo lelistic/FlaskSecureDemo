@@ -1,57 +1,32 @@
-{% extends "base.html" %}
+<!-- send_confirmation.html -->
+{% extends "security_layout.html" %}
 {% from "__macro.html" import render_form_field %}
-
-
-
-
-
 
 {% block title %}
 Send confirmation instructions
 {% endblock %}
 
-{% block content %}
+{% block card_body %}
+<p class="mt-1">Send Confirmation Instructions</p>
 
-<div class="p-5 mt-5">
-    <div class="h1 mt-3"></div>
+<form action="{{ url_for_security('send_confirmation') }}" method="post" name="send_confirmation_form">
+    {{ send_confirmation_form.hidden_tag() }}
+    {{ render_form_field(send_confirmation_form.email, placeholder="Click here to enter email", autocomplete="email") }}
+    {{ send_confirmation_form.submit(class="btn btn-primary") }}
+</form>
+{% endblock %}
 
-
-    <div class="container">
-        <div class="card mx-auto" style="max-width: 600px;">
-
-            <div class="card-body">
-
-                <div class="card-title text-center h2">
-                    <img src="/static/assets/img/logo/logo.jpeg" alt="CLAUDIOLELIS" width="200">
-                    <p class="mt-1">Send Confirmation Instructions</p>
-                </div>
-                {% include "security/_messages.html" %}
-
-                <form action="{{ url_for_security('send_confirmation') }}" method="post" name="send_confirmation_form">
-                    {{ send_confirmation_form.hidden_tag() }}
-                    {{ render_form_field(send_confirmation_form.email, placeholder="Click here to enter email",
-                    autocomplete="email") }}
-                    {{ send_confirmation_form.submit( class="btn btn-primary ", style="color: white; background-color:
-                    #105670;") }}
-                </form>
-
-            </div>
-            <div class="card-footer text-center">
-                <!-- Links -->
-                <div class="row">
-                    <div class="col-md-4 mb-2">
-                        <a href="/login">Login</a>
-                    </div>
-                    <div class="col-md-4 mb-2">
-                        <a href="/reset">Esqueceu a senha?</a>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="/register">Registrar</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+{% block card_footer %}
+<!-- Links -->
+<div class="row">
+    <div class="col-md-4 mb-2">
+        <a href="/login" class="text-white">Login</a>
+    </div>
+    <div class="col-md-4 mb-2">
+        <a href="/reset" class="text-white">Forgot password?</a>
+    </div>
+    <div class="col-md-4">
+        <a href="/register" class="text-white">Register</a>
     </div>
 </div>
-
-{% endblock content %}
+{% endblock %}

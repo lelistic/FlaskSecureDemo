@@ -108,16 +108,50 @@ This project includes an example Flask application configured with `flask-securi
 - Customize the security settings in the Flask configuration.
 - Use the PostgreSQL database for storing and retrieving data.
 
+<br>
+<hr>
+<hr>
+<br>
+
+## (⚠️) Important Note Regarding Endpoint Availability 
+
+Depending on the environment configuration (development or production) and the specific features enabled in Flask-Security-Too, some endpoints may be available or unavailable. Please review the following information:
+
+### Development Environment
+
+In the development environment, certain configurations and features may be disabled for testing or debugging purposes. For example:
+
+- **Change Password Endpoint:** Disabled (`SECURITY_CHANGEABLE = False`)
+- **Confirmation Emails:** Not sent (`SECURITY_SEND_REGISTER_EMAIL = False`)
+- **Confirmation Endpoint:** Disabled (`SECURITY_CONFIRMABLE = False`)
+- **Password Recovery Endpoint:** Disabled (`SECURITY_RECOVERABLE = False`)
+
+### Production Environment
+
+In the production environment, these features are typically enabled to provide full functionality to end-users. For example:
+
+- **Change Password Endpoint:** Enabled (`SECURITY_CHANGEABLE = True`)
+- **Confirmation Emails:** Sent (`SECURITY_SEND_REGISTER_EMAIL = True`)
+- **Confirmation Endpoint:** Enabled (`SECURITY_CONFIRMABLE = True`)
+- **Password Recovery Endpoint:** Enabled (`SECURITY_RECOVERABLE = True`)
+
+Please ensure that you are aware of these differences when testing or deploying your application in different environments. If you encounter any issues related to endpoint availability, review your environment configuration settings to ensure that the desired features are enabled.
+
+<br>
+<hr>
+<hr>
+<br>
+
+
 ## Contributing
 
-Contributions are welcome! If you have any suggestions, improvements, or bug fixes, please create a pull request or open an issue on GitHub.
-Happy coding! 
+Contact me.
 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
+## Related links
 
 - [Flask](https://flask.palletsprojects.com/)
 - [flask-security-too](https://flask-security-too.readthedocs.io/)

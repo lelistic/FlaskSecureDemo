@@ -5,12 +5,12 @@ Example: Proverbs list
 {% endblock %}
 
 {% block content %}
-<div class="container p-4" style="margin-top: 100px;">
+<div class="container mt-4 text-white"> <!-- Added text-white for light text color on dark background -->
     <h1>List of Bible Proverbs</h1>
     <ul class="list-group">
         {% for proverb in proverbs %}
-        <li class="list-group-item">
-            <strong>Proverbs {{ proverb.chapter }}:{{ proverb.verse }}</strong> - {{ proverb.text }}
+        <li class="list-group-item bg-dark"> <!-- Added bg-dark for dark background -->
+            <strong class="text-light">Proverbs {{ proverb.chapter }}:{{ proverb.verse }}</strong> - {{ proverb.text }}
         </li>
         {% endfor %}
     </ul>
@@ -21,8 +21,8 @@ Example: Proverbs list
             {% if proverbs %}
                 {% if page > 1 %}
                     <li class="page-item">
-                        <a class="page-link" href="{{ url_for('bp_list_reports.show_proverbs', page=page-1, limit=limit) }}" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
+                        <a class="page-link text-white" href="{{ url_for('bp_list_reports.show_proverbs', page=page-1, limit=limit) }}" aria-label="Previous">
+                            <span aria-hidden="true"><i class="fas fa-chevron-left"></i></span>
                         </a>
                     </li>
                 {% endif %}
@@ -31,8 +31,8 @@ Example: Proverbs list
                 </li>
                 {% if end_index < len(proverbs) %}
                     <li class="page-item">
-                        <a class="page-link" href="{{ url_for('bp_list_reports.show_proverbs', page=page+1, limit=limit) }}" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
+                        <a class="page-link text-white" href="{{ url_for('bp_list_reports.show_proverbs', page=page+1, limit=limit) }}" aria-label="Next">
+                            <span aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
                         </a>
                     </li>
                 {% endif %}
